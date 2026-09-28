@@ -1,9 +1,0 @@
-初始提交：中国书法家知识图谱问答系统
-
-包含以下模块：
-- 本体构建：书法家领域本体设计 (OWL)
-- 知识抽取：基于LangChain的实体与关系抽取
-- RDF转换：结构化数据到RDF三元组转换 (RML)
-- backend_analysis：知识图谱图分析
-- backend_qa：基于RDF的问答Agent
-- frontend：Streamlit Web应用前端
