@@ -1,0 +1,169 @@
+# -*- coding: utf-8 -*-
+# 书法家本体 OWL 文件
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/ontology/calligraphy#> .
+
+# ========================
+# 本体声明
+# ========================
+<http://example.org/ontology/calligraphy>
+    rdf:type owl:Ontology ;
+    rdfs:label "书法家本体"@zh .
+
+# ========================
+# 类定义
+# ========================
+:Person rdf:type owl:Class ;
+    rdfs:label "人物"@zh .
+
+:Script rdf:type owl:Class ;
+    rdfs:label "书体"@zh .
+
+:InnovationStyle rdf:type owl:Class ;
+    rdfs:subClassOf :Script ;
+    rdfs:label "开创风格"@zh .
+
+# ========================
+# 对象属性 (ObjectProperty)
+# ========================
+:learnedFrom rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdfs:label "师承"@zh .
+
+:influenced rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdfs:label "影响"@zh .
+
+:relative rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdfs:label "亲属"@zh .
+
+:goodAtScript rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Script ;
+    rdfs:label "擅长书体"@zh .
+
+:created rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :InnovationStyle ;
+    rdfs:label "开创"@zh .
+
+# ========================
+# 数据类型属性 (DatatypeProperty)
+# ========================
+:dynasty rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "所属朝代"@zh .
+
+:birthYear rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "生年"@zh .
+
+:deathYear rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "卒年"@zh .
+
+:styleName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "字号"@zh .
+
+:hometown rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "籍贯"@zh .
+
+:position rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "官衔"@zh .
+
+:representativeWork rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "代表作品"@zh .
+
+:writing rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "著述"@zh .
+
+## 书体实例
+:楷书 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "楷书"@zh .
+
+:行书 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "行书"@zh .
+
+:草书 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "草书"@zh .
+
+:隶书 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "隶书"@zh .
+
+:篆书 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "篆书"@zh .
+
+:魏碑 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "魏碑"@zh .
+
+:章草 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "章草"@zh .
+
+:今草 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "今草"@zh .
+
+:狂草 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "狂草"@zh .
+
+:甲骨文 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "甲骨文"@zh .
+
+:金文 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "金文"@zh .
+
+:瘦金体 rdf:type owl:NamedIndividual ;
+    rdf:type :Script ;
+    rdfs:label "瘦金体"@zh .
+
+## 开创风格实例
+:妍美流便体 rdf:type owl:NamedIndividual ;
+    rdf:type :InnovationStyle ;
+    rdfs:label "妍美流便体"@zh .
+
+:小篆飞白 rdf:type owl:NamedIndividual ;
+    rdf:type :InnovationStyle ;
+    rdfs:label "小篆飞白"@zh .
+
+:草篆 rdf:type owl:NamedIndividual ;
+    rdf:type :InnovationStyle ;
+    rdfs:label "草篆"@zh .
+
+:偏锋书法 rdf:type owl:NamedIndividual ;
+    rdf:type :InnovationStyle ;
+    rdfs:label "偏锋书法"@zh .
+
+:甲骨文书法 rdf:type owl:NamedIndividual ;
+    rdf:type :InnovationStyle ;
+    rdfs:label "甲骨文书法"@zh .

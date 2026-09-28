@@ -1,0 +1,201 @@
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix calli: <http://example.org/ontology/calligraphy#> .
+@prefix map: <http://example.org/mapping#> .
+
+# 定义逻辑数据源
+map:LogicalSource a rml:LogicalSource ;
+    rml:source "书法家三元组.csv" ;
+    rml:referenceFormulation ql:CSV .
+
+# 书法家实体映射 - 为每个唯一的书法家创建实体
+map:CalligrapherMapping a rr:TriplesMap ;
+    rml:logicalSource map:LogicalSource ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}" ;
+        rr:class calli:Calligrapher
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [ rml:reference "主体" ; rr:datatype xsd:string ]
+    ] .
+
+# 所属朝代映射 - 只处理关系="所属朝代"的行
+map:DynastyMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='所属朝代']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:dynasty ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 字号映射
+map:StyleNameMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='字号']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:styleName ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 籍贯映射
+map:HometownMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='籍贯']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:hometown ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 官衔映射
+map:PositionMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='官衔']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:position ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 艺术特色映射
+map:ArtFeatureMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='艺术特色']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:artFeature ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 风格特征映射
+map:StyleMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='风格特征']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:styleCharacteristic ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 兼习映射
+map:SkillMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='兼习']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:otherSkill ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 代表作品映射
+map:WorkMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='代表作品']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:representativeWork ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 著述映射
+map:WritingMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='著述']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:writing ;
+        rr:objectMap [ rml:reference "客体" ; rr:datatype xsd:string ]
+    ] .
+
+# 师承映射（对象为URI）
+map:TeacherMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='师承']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:learnedFrom ;
+        rr:objectMap [ rr:template "http://example.org/calligraphy/calligrapher/{客体}" ]
+    ] .
+
+# 影响映射（对象为URI）
+map:InfluenceMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        a rml:LogicalSource ;
+        rml:source "书法家三元组.csv" ;
+        rml:referenceFormulation ql:CSV ;
+        rml:iterator "[关系='影响']"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/calligraphy/calligrapher/{主体}"
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate calli:influenced ;
+        rr:objectMap [ rr:template "http://example.org/calligraphy/calligrapher/{客体}" ]
+    ] .
